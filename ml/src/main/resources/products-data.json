@@ -8,9 +8,9 @@
     "decimals": 0
   },
   "images": [
-    "https://via.placeholder.com/600x600.png?text=Producto+Imagen+1",
-    "https://via.placeholder.com/600x600.png?text=Producto+Imagen+2",
-    "https://via.placeholder.com/600x600.png?text=Producto+Imagen+3"
+    "http://localhost:8080/images/frontal1.webp",
+    "http://localhost:8080/images/perfil12.webp",
+    "http://localhost:8080/images/trasera1.webp"
   ],
   "mainImageIndex": 0,
   "paymentMethods": [
@@ -38,4 +38,132 @@
     { "name": "Memoria interna", "value": "128 GB" },
     { "name": "Memoria RAM", "value": "6 GB" }
   ]
-}]
+},
+  {
+    "id": "MLA98765432",
+    "title": "Notebook Dell Inspiron 15 3525 Ryzen 5 5500U 8GB RAM 256GB SSD Full HD",
+    "description": "Potencia y portabilidad se unen en la Dell Inspiron 15. Equipada con un procesador AMD Ryzen 5, 8GB de RAM y un rápido SSD de 256GB, es ideal para trabajo, estudio y entretenimiento. Su pantalla Full HD de 15.6 pulgadas ofrece imágenes nítidas y colores vibrantes. Diseño elegante y liviano para llevarla a todas partes.",
+    "price": {
+      "currency": "ARS",
+      "amount": 950000,
+      "decimals": 0
+    },
+    "images": [
+      "http://localhost:8080/images/notebook1.webp",
+      "http://localhost:8080/images/notebook2.webp"
+    ],
+    "mainImageIndex": 0,
+    "paymentMethods": [
+      "Tarjeta de crédito en hasta 12 cuotas",
+      "Tarjeta de débito",
+      "Efectivo en puntos de pago",
+      "Mercado Pago",
+      "Transferencia bancaria"
+    ],
+    "seller": {
+      "name": "Dell Store Oficial",
+      "location": "Vicente López, Buenos Aires",
+      "reputation": "MercadoLíder Platinum",
+      "transactions": 22500
+    },
+    "stock": 45,
+    "condition": "Nuevo",
+    "reviews": {
+      "rating": 4.7,
+      "count": 850
+    },
+    "features": [
+      { "name": "Marca", "value": "Dell" },
+      { "name": "Línea", "value": "Inspiron" },
+      { "name": "Modelo", "value": "15 3525" },
+      { "name": "Procesador", "value": "AMD Ryzen 5 5500U" },
+      { "name": "Memoria RAM", "value": "8 GB" },
+      { "name": "Capacidad del SSD", "value": "256 GB" },
+      { "name": "Resolución de la pantalla", "value": "1920x1080 (Full HD)" }
+    ]
+  },
+  {
+    "id": "MLA87654321",
+    "title": "Cafetera Express Oster PrimaLatte II Roja Automática Espresso",
+    "description": "Disfruta de un café de calidad profesional en casa con la Oster PrimaLatte II. Prepara espressos, cappuccinos y lattes automáticamente con solo tocar un botón. Cuenta con depósito para leche fresca y bomba italiana de 19 bares de presión para una extracción perfecta y una crema deliciosa. Incluye portafiltro para café molido y para cápsulas.",
+    "price": {
+      "currency": "ARS",
+      "amount": 280000,
+      "decimals": 0
+    },
+    "images": [
+      "http://localhost:8080/images/cafetera1.webp",
+      "http://localhost:8080/images/cafetera2.webp"
+    ],
+    "mainImageIndex": 0,
+    "paymentMethods": [
+      "Tarjeta de crédito en hasta 6 cuotas",
+      "Tarjeta de débito",
+      "Efectivo en puntos de pago",
+      "Mercado Pago"
+    ],
+    "seller": {
+      "name": "ElectroHogar Premium",
+      "location": "Palermo, Capital Federal",
+      "reputation": "MercadoLíder Gold",
+      "transactions": 7300
+    },
+    "stock": 70,
+    "condition": "Nuevo",
+    "reviews": {
+      "rating": 4.8,
+      "count": 1120
+    },
+    "features": [
+      { "name": "Marca", "value": "Oster" },
+      { "name": "Modelo", "value": "PrimaLatte II BVSTEM6701R" },
+      { "name": "Tipos de filtros", "value": "Permanente/Reutilizable" },
+      { "name": "Presión", "value": "19 bar" },
+      { "name": "Tipos de café soportados", "value": "Molido y Cápsulas Nespresso Original" },
+      { "name": "Bebidas recomendadas", "value": "Espresso, Latte, Cappuccino" },
+      { "name": "Capacidad del tanque de agua", "value": "1.5 L" }
+    ]
+  },
+  {
+    "id": "MLA76543210",
+    "title": "Bicicleta Mountain Bike Philco R29 Frenos Disco 21 Vel Suspensión",
+    "description": "Aventúrate por nuevos caminos con la bicicleta mountain bike Philco rodado 29. Equipada con frenos de disco mecánicos para mayor seguridad, 21 velocidades Shimano para adaptarte a cualquier terreno y suspensión delantera para absorber impactos. Cuadro de aluminio resistente y liviano. Ideal para iniciarse en el ciclismo de montaña o para paseos urbanos.",
+    "price": {
+      "currency": "ARS",
+      "amount": 390000,
+      "decimals": 0
+    },
+    "images": [
+      "http://localhost:8080/images/bici1.webp",
+      "http://localhost:8080/images/bici2.webp",
+      "http://localhost:8080/images/bici3.webp"
+    ],
+    "mainImageIndex": 0,
+    "paymentMethods": [
+      "Tarjeta de crédito en hasta 12 cuotas sin interés",
+      "Tarjeta de débito",
+      "Ahora 12",
+      "Mercado Pago"
+    ],
+    "seller": {
+      "name": "DeportesAventuraOK",
+      "location": "San Isidro, Buenos Aires",
+      "reputation": "MercadoLíder",
+      "transactions": 3150
+    },
+    "stock": 0,
+    "condition": "Nuevo",
+    "reviews": {
+      "rating": 4.4,
+      "count": 480
+    },
+    "features": [
+      { "name": "Marca", "value": "Philco" },
+      { "name": "Modelo", "value": "Terranova R29" },
+      { "name": "Rodado", "value": "29" },
+      { "name": "Cantidad de velocidades", "value": "21" },
+      { "name": "Tipo de freno delantero", "value": "Disco mecánico" },
+      { "name": "Tipo de freno trasero", "value": "Disco mecánico" },
+      { "name": "Materiales del cuadro", "value": "Aluminio" }
+    ]
+  }]
