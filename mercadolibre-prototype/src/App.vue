@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="bg-ml-background min-h-screen">
+    <Navbar />
     <main>
       <router-view />
     </main>
@@ -7,7 +8,7 @@
 </template>
 
 <script setup>
-// import Navbar from '@/components/layout/Navbar.vue'
+import Navbar from '@/components/layout/Navbar.vue'
 // import Footer from '@/components/layout/Footer.vue'
 </script>
 

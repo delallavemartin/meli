@@ -1,6 +1,7 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import ProductDetailPage from '@/views/ProductDetailPage.vue'
+import MercadoLibreResultsPage from '@/views/MercadoLibreResultsPage.vue'
 
 const routes = [
   {
@@ -9,10 +10,15 @@ const routes = [
     component: ProductDetailPage,
     props: true // Pasa los params de la ruta como props al componente
   },
-  // Puedes añadir una ruta raíz o para listado de productos
+   {
+    path: '/items',
+    name: 'MercadoLibreResults',
+    component: MercadoLibreResultsPage,
+    props: true
+  },
   {
     path: '/',
-    redirect: '/item/MLA12345678' // Redirige a un producto de ejemplo
+    redirect: '/items' // Redirige a un producto de ejemplo
   }
 ]
 
