@@ -20,16 +20,25 @@ public class ProductRepositoryImpl implements ProductRepository{
     ObjectMapper mapper = new ObjectMapper();
     File file = new File("src/main/resources/products-data.json");
     try (InputStream inputStream = new FileInputStream(file)) {
-      // Deserializar el archivo JSON como una lista de ProductDetailView
       List<ProductDetailView> products = List.of(mapper.readValue(inputStream, ProductDetailView[].class));
 
-      // Buscar el producto que coincida con el ID
       return products.stream()
               .filter(product -> product.id().equals(id))
               .findFirst()
               .orElseThrow(() -> new NoSuchElementException("Product: " + id + " not found."));
     } catch (IOException e) {
       throw new RuntimeException("Error parsing data for product: " + id, e);
+    }
+  }
+
+  @Override
+  public List<ProductDetailView> getProducts() {
+    ObjectMapper mapper = new ObjectMapper();
+    File file = new File("src/main/resources/products-data.json");
+    try (InputStream inputStream = new FileInputStream(file)) {
+      return List.of(mapper.readValue(inputStream, ProductDetailView[].class));
+    } catch (IOException e) {
+      throw new RuntimeException("Error parsing product data.", e);
     }
   }
 }

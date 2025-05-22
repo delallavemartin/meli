@@ -1,7 +1,6 @@
 package com.martindelallave.ml.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.martindelallave.ml.repository.ProductRepositoryImpl;
 import com.martindelallave.ml.views.ProductDetailView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,5 +44,16 @@ class ProductRepositoryTest {
     Exception exception = assertThrows(RuntimeException.class, () -> productRepository.getProduct("999"));
     assertEquals("Product: 999 not found.", exception.getMessage());
   }
+
+  @Test
+  void testGetProducts_HappyPath() {
+    List<ProductDetailView> result = productRepository.getProducts();
+
+    assertNotNull(result);
+    assertFalse(result.isEmpty());
+    assertEquals(products.size(), result.size());
+    assertEquals(products.getFirst().id(), result.getFirst().id());
+  }
+
 
 }
