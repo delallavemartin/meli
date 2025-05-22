@@ -50,8 +50,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import ImageGallery from './ImageGallery.vue' // Ajusta la ruta si es necesario
-import ProductInfoSideBar from './ProductInfoSideBar.vue' // Ajusta la ruta si es necesario
+import ImageGallery from './ImageGallery.vue'
+import ProductInfoSideBar from './ProductInfoSideBar.vue'
+import { fetchProduct } from '@/services/productService.js';
 
 const props = defineProps({
   productId: {
@@ -65,14 +66,7 @@ const error = ref(null)
 
 onMounted(async () => {
   try {
-    // Asegúrate de que la URL base sea la correcta para tu entorno
-    const response = await fetch(
-      `http://localhost:8080/api/products/${props.productId}`
-    )
-    if (!response.ok) {
-      throw new Error('Error al cargar el producto. Código: ' + response.status)
-    }
-    const data = await response.json()
+    const data = await fetchProduct(props.productId);
     // Simulación de datos si la API no devuelve todo lo esperado por los componentes hijos
     // En un caso real, la API debería devolver una estructura completa.
     product.value = {
