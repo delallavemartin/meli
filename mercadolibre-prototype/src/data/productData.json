@@ -1,0 +1,41 @@
+{
+  "id": "MLA12345678",
+  "title": "Smartphone Genérico Modelo X 128GB 6GB RAM Color Negro Estelar",
+  "description": "Descubre el nuevo Smartphone Genérico Modelo X, con un rendimiento increíble y una cámara de alta resolución. Perfecto para tu día a día, con una batería de larga duración y un diseño elegante. Disfruta de tus aplicaciones y juegos favoritos con su potente procesador y amplia memoria RAM. La pantalla Full HD+ te ofrece una experiencia visual inmersiva.",
+  "price": {
+    "currency": "ARS",
+    "amount": 185000,
+    "decimals": 0
+  },
+  "images": [
+    "https://via.placeholder.com/600x600.png?text=Producto+Imagen+1",
+    "https://via.placeholder.com/600x600.png?text=Producto+Imagen+2",
+    "https://via.placeholder.com/600x600.png?text=Producto+Imagen+3"
+  ],
+  "mainImageIndex": 0,
+  "paymentMethods": [
+    "Tarjeta de crédito en hasta 12 cuotas",
+    "Tarjeta de débito",
+    "Efectivo en puntos de pago",
+    "Mercado Pago"
+  ],
+  "seller": {
+    "name": "TecnoTienda Oficial",
+    "location": "Villa Crespo, Capital Federal",
+    "reputation": "MercadoLíder Platinum",
+    "transactions": 15020
+  },
+  "stock": 25,
+  "condition": "Nuevo",
+  "reviews": {
+    "rating": 4.5,
+    "count": 1250
+  },
+  "features": [
+    { "name": "Marca", "value": "Genérica" },
+    { "name": "Línea", "value": "Modelo X" },
+    { "name": "Modelo", "value": "X128" },
+    { "name": "Memoria interna", "value": "128 GB" },
+    { "name": "Memoria RAM", "value": "6 GB" }
+  ]
+}

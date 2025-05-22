@@ -1,0 +1,25 @@
+HELP.md
+ml/.mvn/wrapper/maven-wrapper.jar
+ml/.mvn/wrapper/maven-wrapper.properties
+ml/mvnw.cmd
+ml/mvnw
+
+# Node (frontend)
+mercadolibre-prototype/node_modules/
+mercadolibre-prototype/dist/
+
+# Java (backend)
+ml/target/
+
+# General
+.DS_Store
+.env
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/

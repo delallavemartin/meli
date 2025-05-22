@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    --color-ml-yellow: '#FFF159';
+    --color-ml-blue: '#3483FA';
+    --color-ml-dark-gray: '#333333';
+    --color-ml-gray: '#666666';
+    --color-ml-light-gray: '#999999';
+    --color-ml-background: '#EBEBEB';
+}
