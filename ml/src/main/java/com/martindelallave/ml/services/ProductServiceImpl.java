@@ -2,21 +2,23 @@ package com.martindelallave.ml.services;
 
 import com.martindelallave.ml.repository.ProductRepository;
 import com.martindelallave.ml.views.ProductDetailView;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
-  @Autowired
-  public ProductRepository productRepository;
+  private final ProductRepository productRepository;
+
+  public ProductServiceImpl(ProductRepository productRepository) {
+    this.productRepository = productRepository;
+  }
 
   @Override
   public ProductDetailView getProduct(String id) {
-    if (Objects.isNull(id)){
+    if (Objects.isNull(id)) {
       throw new IllegalArgumentException("Product id can't be null.");
     }
     return productRepository.getProduct(id);

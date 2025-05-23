@@ -1,12 +1,13 @@
 package com.martindelallave.ml.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.martindelallave.ml.file.FileReaderService;
+import com.martindelallave.ml.file.FileReaderServiceImpl;
 import com.martindelallave.ml.views.ProductDetailView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -14,17 +15,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductRepositoryTest {
 
+  // Definir la ruta del archivo
+  public static final String PRODUCTS_DATA_FILE = "src/main/resources/products-data.json";
+
   private ProductRepositoryImpl productRepository;
   private List<ProductDetailView> products;
 
   @BeforeEach
   void setUp() throws IOException {
-    productRepository = new ProductRepositoryImpl();
+    // Crear el ObjectMapper y FileReaderService
+    ObjectMapper objectMapper = new ObjectMapper();
+    FileReaderService fileReaderService = new FileReaderServiceImpl(objectMapper);
+
+    // Inicializar ProductRepositoryImpl con los argumentos requeridos
+    productRepository = new ProductRepositoryImpl(fileReaderService);
 
     // Leer el archivo JSON
-    ObjectMapper mapper = new ObjectMapper();
-    File file = new File("src/main/resources/products-data.json");
-    products = List.of(mapper.readValue(file, ProductDetailView[].class));
+    File file = new File(PRODUCTS_DATA_FILE);
+    products = List.of(objectMapper.readValue(file, ProductDetailView[].class));
   }
 
   @Test
@@ -54,6 +62,4 @@ class ProductRepositoryTest {
     assertEquals(products.size(), result.size());
     assertEquals(products.getFirst().id(), result.getFirst().id());
   }
-
-
 }

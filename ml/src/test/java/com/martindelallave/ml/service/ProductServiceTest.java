@@ -5,9 +5,6 @@ import com.martindelallave.ml.repository.ProductRepository;
 import com.martindelallave.ml.services.ProductServiceImpl;
 import com.martindelallave.ml.views.ProductDetailView;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.io.File;
 import java.util.List;
@@ -17,33 +14,22 @@ import static org.mockito.Mockito.*;
 
 class ProductServiceTest {
 
-  @Mock
-  private ProductRepository productRepository;
+  private static final String PRODUCTS_DATA_FILE = "src/main/resources/products-data.json";
+  private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product: 999 not found.";
+  private static final String NULL_ID_MESSAGE = "Product id can't be null.";
+  private static final String NO_RESULTS_MESSAGE = "No results found.";
 
-  @InjectMocks
-  private ProductServiceImpl productService;
-
-  public ProductServiceTest() {
-    MockitoAnnotations.openMocks(this);
-  }
+  private final ProductRepository productRepository = mock(ProductRepository.class);
+  private final ProductServiceImpl productService = new ProductServiceImpl(productRepository);
 
   @Test
-  void testGetProduct_HappyPath_UsingJsonFile() throws Exception {
-    // Leer el archivo JSON
-    ObjectMapper mapper = new ObjectMapper();
-    File file = new File("src/main/resources/products-data.json");
-    ProductDetailView[] productsArray = mapper.readValue(file, ProductDetailView[].class);
+  void shouldReturnProductWhenIdExists() throws Exception {
+    ProductDetailView mockProduct = loadTestProducts().getFirst();
 
-    // Seleccionar un producto del arreglo como mock
-    ProductDetailView mockProduct = productsArray[0];
-
-    // Configuración del mock
     when(productRepository.getProduct(mockProduct.id())).thenReturn(mockProduct);
 
-    // Llamada al método
     ProductDetailView result = productService.getProduct(mockProduct.id());
 
-    // Verificaciones
     assertNotNull(result);
     assertEquals(mockProduct.id(), result.id());
     assertEquals(mockProduct.title(), result.title());
@@ -51,28 +37,61 @@ class ProductServiceTest {
   }
 
   @Test
-  void testGetProduct_ProductNotFound() {
-    // Configuración del mock
-    when(productRepository.getProduct("999")).thenThrow(new RuntimeException("Product: 999 not found."));
+  void shouldThrowExceptionWhenProductNotFound() {
+    when(productRepository.getProduct("999")).thenThrow(new RuntimeException(PRODUCT_NOT_FOUND_MESSAGE));
 
-    // Llamada al método y verificación de excepción
     Exception exception = assertThrows(RuntimeException.class, () -> productService.getProduct("999"));
-    assertEquals("Product: 999 not found.", exception.getMessage());
+    assertEquals(PRODUCT_NOT_FOUND_MESSAGE, exception.getMessage());
     verify(productRepository, times(1)).getProduct("999");
   }
 
   @Test
-  void testGetProduct_NullId() {
-    // Llamada al método y verificación de excepción
+  void shouldThrowExceptionWhenIdIsNull() {
     Exception exception = assertThrows(IllegalArgumentException.class, () -> productService.getProduct(null));
-    assertEquals("Product id can't be null.", exception.getMessage());
+    assertEquals(NULL_ID_MESSAGE, exception.getMessage());
     verify(productRepository, never()).getProduct(anyString());
   }
 
   @Test
-  void testGetProducts_HappyPath() {
-    // Configuración del mock
-    List<ProductDetailView> mockProducts = List.of(
+  void shouldReturnAllProductsWhenAvailable() {
+    List<ProductDetailView> mockProducts = createMockProducts();
+    when(productRepository.getProducts()).thenReturn(mockProducts);
+
+    List<ProductDetailView> result = productService.getProducts();
+
+    assertNotNull(result);
+    assertFalse(result.isEmpty());
+    assertEquals(mockProducts.size(), result.size());
+    assertEquals(mockProducts.get(0).title(), result.getFirst().title());
+    verify(productRepository, times(1)).getProducts();
+  }
+
+  @Test
+  void shouldThrowExceptionWhenNoProductsFound() {
+    when(productRepository.getProducts()).thenReturn(List.of());
+
+    Exception exception = assertThrows(RuntimeException.class, productService::getProducts);
+    assertEquals(NO_RESULTS_MESSAGE, exception.getMessage());
+    verify(productRepository, times(1)).getProducts();
+  }
+
+  @Test
+  void shouldThrowExceptionWhenProductsResponseIsNull() {
+    when(productRepository.getProducts()).thenReturn(null);
+
+    Exception exception = assertThrows(RuntimeException.class, productService::getProducts);
+    assertEquals(NO_RESULTS_MESSAGE, exception.getMessage());
+    verify(productRepository, times(1)).getProducts();
+  }
+
+  private List<ProductDetailView> loadTestProducts() throws Exception {
+    ObjectMapper mapper = new ObjectMapper();
+    File file = new File(PRODUCTS_DATA_FILE);
+    return List.of(mapper.readValue(file, ProductDetailView[].class));
+  }
+
+  private List<ProductDetailView> createMockProducts() {
+    return List.of(
             new ProductDetailView(
                     "1", "Producto 1", "Descripción 1",
                     new ProductDetailView.Price("USD", 100, 0),
@@ -94,38 +113,5 @@ class ProductServiceTest {
                     List.of(new ProductDetailView.Feature("Tamaño", "Grande"))
             )
     );
-    when(productRepository.getProducts()).thenReturn(mockProducts);
-
-    // Llamada al método
-    List<ProductDetailView> result = productService.getProducts();
-
-    // Verificaciones
-    assertNotNull(result);
-    assertFalse(result.isEmpty());
-    assertEquals(2, result.size());
-    assertEquals("Producto 1", result.getFirst().title());
-    verify(productRepository, times(1)).getProducts();
-  }
-
-  @Test
-  void testGetProducts_EmptyList() {
-    // Configuración del mock
-    when(productRepository.getProducts()).thenReturn(List.of());
-
-    // Llamada al método y verificación de excepción
-    Exception exception = assertThrows(RuntimeException.class, () -> productService.getProducts());
-    assertEquals("No results found.", exception.getMessage());
-    verify(productRepository, times(1)).getProducts();
-  }
-
-  @Test
-  void testGetProducts_NullResponse() {
-    // Configuración del mock
-    when(productRepository.getProducts()).thenReturn(null);
-
-    // Llamada al método y verificación de excepción
-    Exception exception = assertThrows(RuntimeException.class, () -> productService.getProducts());
-    assertEquals("No results found.", exception.getMessage());
-    verify(productRepository, times(1)).getProducts();
   }
 }

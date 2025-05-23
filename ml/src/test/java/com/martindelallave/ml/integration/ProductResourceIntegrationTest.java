@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -19,21 +20,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ProductResourceIntegrationTest {
 
+  private static final String PRODUCTS_DATA_FILE = "src/main/resources/products-data.json";
+  private static final String BASE_ENDPOINT = "/api/products";
+  private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product: 999 not found.";
+
   @Autowired
   private MockMvc mockMvc;
-
   @Autowired
   private ObjectMapper objectMapper;
 
   @Test
   void testGetProduct_HappyPath() throws Exception {
-    // Leer el archivo JSON para obtener un producto de prueba
-    File file = new File("src/main/resources/products-data.json");
-    ProductDetailView[] products = objectMapper.readValue(file, ProductDetailView[].class);
-    ProductDetailView testProduct = products[0];
+    ProductDetailView testProduct = getTestProducts().getFirst();
 
-    // Realizar la solicitud GET y verificar la respuesta
-    mockMvc.perform(get("/api/products/{id}", testProduct.id())
+    mockMvc.perform(get(BASE_ENDPOINT + "/{id}", testProduct.id())
                     .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -43,27 +43,28 @@ class ProductResourceIntegrationTest {
 
   @Test
   void testGetProduct_ProductNotFound() throws Exception {
-    // Realizar la solicitud GET con un ID inexistente
-    mockMvc.perform(get("/api/products/{id}", "999")
+    mockMvc.perform(get(BASE_ENDPOINT + "/{id}", "999")
                     .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound())
-            .andExpect(jsonPath("$").value("Product: 999 not found."));
+            .andExpect(jsonPath("$").value(PRODUCT_NOT_FOUND_MESSAGE));
   }
 
   @Test
   void testGetProducts_HappyPath() throws Exception {
-    // Leer el archivo JSON para obtener los productos de prueba
-    File file = new File("src/main/resources/products-data.json");
-    ProductDetailView[] products = objectMapper.readValue(file, ProductDetailView[].class);
+    List<ProductDetailView> products = getTestProducts();
 
-    // Realizar la solicitud GET y verificar la respuesta
-    mockMvc.perform(get("/api/products")
+    mockMvc.perform(get(BASE_ENDPOINT)
                     .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.length()").value(products.length))
-            .andExpect(jsonPath("$[0].id").value(products[0].id()))
-            .andExpect(jsonPath("$[0].title").value(products[0].title()));
+            .andExpect(jsonPath("$.length()").value(products.size()))
+            .andExpect(jsonPath("$[0].id").value(products.getFirst().id()))
+            .andExpect(jsonPath("$[0].title").value(products.getFirst().title()));
   }
 
+  private List<ProductDetailView> getTestProducts() throws Exception {
+    File file = new File(PRODUCTS_DATA_FILE);
+    ProductDetailView[] productsArray = objectMapper.readValue(file, ProductDetailView[].class);
+    return Arrays.asList(productsArray);
+  }
 }
