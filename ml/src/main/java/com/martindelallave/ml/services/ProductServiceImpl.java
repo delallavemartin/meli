@@ -1,5 +1,6 @@
 package com.martindelallave.ml.services;
 
+import com.martindelallave.ml.logging.LogExecution;
 import com.martindelallave.ml.repository.ProductRepository;
 import com.martindelallave.ml.views.ProductDetailView;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@LogExecution
 public class ProductServiceImpl implements ProductService {
 
   private final ProductRepository productRepository;

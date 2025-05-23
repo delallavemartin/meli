@@ -1,6 +1,7 @@
 package com.martindelallave.ml.repository;
 
 import com.martindelallave.ml.file.FileReaderService;
+import com.martindelallave.ml.logging.LogExecution;
 import com.martindelallave.ml.views.ProductDetailView;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+@LogExecution
 public class ProductRepositoryImpl implements ProductRepository {
 
   private final FileReaderService fileReaderService;

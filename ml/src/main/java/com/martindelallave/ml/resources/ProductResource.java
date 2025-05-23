@@ -1,5 +1,6 @@
 package com.martindelallave.ml.resources;
 
+import com.martindelallave.ml.logging.LogExecution;
 import com.martindelallave.ml.services.ProductService;
 import com.martindelallave.ml.views.ProductDetailView;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
+@LogExecution
 public class ProductResource {
 
   private final ProductService productService;

@@ -1,6 +1,7 @@
 package com.martindelallave.ml.file;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.martindelallave.ml.logging.LogExecution;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -18,6 +19,7 @@ public class FileReaderServiceImpl implements FileReaderService{
   }
 
   @Override
+  @LogExecution
   public <T> List<T> readDataFromFile(String filePath, Class<T[]> type) {
     File file = new File(filePath);
     try (InputStream inputStream = new FileInputStream(file)) {
