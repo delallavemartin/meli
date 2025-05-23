@@ -11,17 +11,27 @@ import java.util.NoSuchElementException;
 public class ErrorHandler {
 
   @ExceptionHandler(RuntimeException.class)
-  public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
+  public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
+    return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.");
   }
 
   @ExceptionHandler(NoSuchElementException.class)
-  public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException ex) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+  public ResponseEntity<ErrorResponse> handleNoSuchElementException(NoSuchElementException ex) {
+    return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
   }
 
   @ExceptionHandler(IllegalArgumentException.class)
-  public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+  public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException ex) {
+    return buildErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
   }
+
+  private ResponseEntity<ErrorResponse> buildErrorResponse(HttpStatus status, String message) {
+    ErrorResponse errorResponse = new ErrorResponse(
+            status.value(),
+            message
+    );
+    return ResponseEntity.status(status).body(errorResponse);
+  }
+
+  public record ErrorResponse(int status, String message) {}
 }

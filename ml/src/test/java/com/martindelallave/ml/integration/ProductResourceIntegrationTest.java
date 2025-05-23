@@ -31,7 +31,7 @@ class ProductResourceIntegrationTest {
 
   @Test
   void testGetProduct_HappyPath() throws Exception {
-    ProductDetailView testProduct = getTestProducts().getFirst();
+    ProductDetailView testProduct = getTestProducts().get(0);
 
     mockMvc.perform(get(BASE_ENDPOINT + "/{id}", testProduct.id())
                     .contentType(MediaType.APPLICATION_JSON))
@@ -46,7 +46,9 @@ class ProductResourceIntegrationTest {
     mockMvc.perform(get(BASE_ENDPOINT + "/{id}", "999")
                     .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound())
-            .andExpect(jsonPath("$").value(PRODUCT_NOT_FOUND_MESSAGE));
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.status").value(404))
+            .andExpect(jsonPath("$.message").value(PRODUCT_NOT_FOUND_MESSAGE));
   }
 
   @Test
@@ -58,8 +60,8 @@ class ProductResourceIntegrationTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.length()").value(products.size()))
-            .andExpect(jsonPath("$[0].id").value(products.getFirst().id()))
-            .andExpect(jsonPath("$[0].title").value(products.getFirst().title()));
+            .andExpect(jsonPath("$[0].id").value(products.get(0).id()))
+            .andExpect(jsonPath("$[0].title").value(products.get(0).title()));
   }
 
   private List<ProductDetailView> getTestProducts() throws Exception {
