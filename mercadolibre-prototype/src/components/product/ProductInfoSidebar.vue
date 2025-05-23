@@ -1,10 +1,10 @@
 <template>
   <div v-if="productData" class="border border-gray-200 rounded-lg p-6 sticky top-6">
     <p class="text-xs text-ml-light-gray mb-1">
-      {{ productData.condition }} | {{ productData.reviews?.count || 0 }} vendidos
+      {{ productData.condition || 'Condición no especificada' }} | {{ productData.reviews?.count || 0 }} vendidos
     </p>
     <h1 class="text-2xl font-semibold mb-2 text-ml-dark-gray">
-      {{ productData.title }}
+      {{ productData.title || 'Título no disponible' }}
     </h1>
 
     <div v-if="productData.reviews" class="flex items-center mb-4">
@@ -32,13 +32,16 @@
     </div>
 
     <p v-if="productData.price" class="text-4xl font-light mb-1 text-ml-dark-gray">
-      ${{ productData.price.amount.toLocaleString('es-AR') }}
+      ${{ productData.price?.amount?.toLocaleString('es-AR') }}
+    </p>
+    <p v-else class="text-4xl font-light mb-1 text-ml-dark-gray">
+      Precio no disponible
     </p>
     <p v-if="productData.price" class="text-ml-gray mb-1">
       en
       <span class="text-green-600 font-semibold">
         12x $
-        {{ (productData.price.amount / 12).toLocaleString('es-AR', {
+        {{ (productData.price?.amount / 12)?.toLocaleString('es-AR', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
           })
@@ -102,12 +105,12 @@
           class="text-ml-blue hover:text-blue-700"
           @click.prevent="showSellerInfo = true"
         >
-          {{ productData.seller.name }}
+          {{ productData.seller?.name || 'Vendedor no especificado' }}
         </a>
       </p>
       <p class="text-xs text-ml-light-gray">
-        {{ productData.seller.reputation }} | +{{
-          productData.seller.transactions.toLocaleString('es-AR')
+        {{ productData.seller?.reputation || 'Reputación no disponible' }} | +{{
+          productData.seller?.transactions?.toLocaleString('es-AR') || 0
         }} ventas
       </p>
     </div>
@@ -118,11 +121,11 @@
     >
       <div class="bg-white rounded-lg p-6 w-96">
         <h2 class="text-lg font-semibold mb-4">Información del vendedor</h2>
-        <p><strong>Nombre:</strong> {{ productData.seller.name }}</p>
-        <p><strong>Ubicación:</strong> {{ productData.seller.location }}</p>
-        <p><strong>Reputación:</strong> {{ productData.seller.reputation }}</p>
+        <p><strong>Nombre:</strong> {{ productData.seller?.name || 'No disponible' }}</p>
+        <p><strong>Ubicación:</strong> {{ productData.seller?.location || 'No disponible' }}</p>
+        <p><strong>Reputación:</strong> {{ productData.seller?.reputation || 'No disponible' }}</p>
         <p><strong>Transacciones:</strong> {{
-          productData.seller.transactions.toLocaleString('es-AR')
+          productData.seller?.transactions?.toLocaleString('es-AR') || 0
         }}</p>
         <button
           class="mt-4 w-full bg-ml-blue text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"

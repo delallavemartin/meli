@@ -13,6 +13,14 @@ export default defineConfig({
   test:{
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/test/setup.js'
+    setupFiles: './src/test/setup.js',
+     coverage: {
+      exclude: [
+        '**/*.test.js', // Excluir archivos de prueba
+        '**/*.spec.js', // Excluir archivos de especificación
+        'node_modules/**', // Excluir dependencias
+        'dist/**', // Excluir archivos generados
+      ],
+    },
   },
 })

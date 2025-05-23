@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/router/index.js</title>
+    <title>Code coverage report for src/views/MercadoLibreResultsPage.vue</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/router</a> index.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/views</a> MercadoLibreResultsPage.vue</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/30</span>
+                <span class='fraction'>0/29</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/30</span>
+                <span class='fraction'>0/29</span>
             </div>
         
             
@@ -92,7 +92,22 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -110,47 +125,38 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >// src/router/index.js<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { createRouter, createWebHistory } from 'vue-router'</span>
-<span class="cstat-no" title="statement not covered" >import ProductDetailPage from '@/views/ProductDetailPage.vue'</span>
-<span class="cstat-no" title="statement not covered" >import MercadoLibreResultsPage from '@/views/MercadoLibreResultsPage.vue'</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >&lt;template&gt;<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >  &lt;div class="bg-gray-100 min-h-screen"&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div class="container mx-auto p-4"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div class="flex flex-col md:flex-row gap-6"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;main class="w-full md:w-3/4 lg:w-4/5"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;ProductCard v-for="product in products" :key="product.id" :product="product" /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/main&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  &lt;/div&gt;</span>
+&lt;/template&gt;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >&lt;script setup&gt;</span>
+<span class="cstat-no" title="statement not covered" >import { ref, onMounted } from 'vue'</span>
+<span class="cstat-no" title="statement not covered" >import ProductCard from '@/components/listing/ProductCard.vue';</span>
+<span class="cstat-no" title="statement not covered" >import { fetchProducts } from '@/services/productService.js';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const routes = [</span>
-<span class="cstat-no" title="statement not covered" >  {</span>
-<span class="cstat-no" title="statement not covered" >    path: '/item/:id', // Ruta dinámica para el ID del producto</span>
-<span class="cstat-no" title="statement not covered" >    name: 'ProductDetail',</span>
-<span class="cstat-no" title="statement not covered" >    component: ProductDetailPage,</span>
-<span class="cstat-no" title="statement not covered" >    props: true // Pasa los params de la ruta como props al componente</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >   {</span>
-<span class="cstat-no" title="statement not covered" >    path: '/items',</span>
-<span class="cstat-no" title="statement not covered" >    name: 'MercadoLibreResults',</span>
-<span class="cstat-no" title="statement not covered" >    component: MercadoLibreResultsPage,</span>
-<span class="cstat-no" title="statement not covered" >    props: true</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >  {</span>
-<span class="cstat-no" title="statement not covered" >    path: '/',</span>
-<span class="cstat-no" title="statement not covered" >    redirect: '/items' // Redirige a un producto de ejemplo</span>
+<span class="cstat-no" title="statement not covered" >const products = ref(null)</span>
+<span class="cstat-no" title="statement not covered" >const error = ref(null)</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >onMounted(async () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    products.value = await fetchProducts();</span>
+<span class="cstat-no" title="statement not covered" >  } catch (err) {</span>
+<span class="cstat-no" title="statement not covered" >    console.error("Error fetching products:", err);</span>
+<span class="cstat-no" title="statement not covered" >    error.value = err.message || 'Ocurrió un error desconocido al obtener los productos.'</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >]</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const router = createRouter({</span>
-<span class="cstat-no" title="statement not covered" >  history: createWebHistory(import.meta.env.BASE_URL),</span>
-<span class="cstat-no" title="statement not covered" >  routes</span>
 <span class="cstat-no" title="statement not covered" >})</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default router</span></pre></td></tr></table></pre>
+&lt;/script&gt;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

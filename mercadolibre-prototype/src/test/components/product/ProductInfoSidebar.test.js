@@ -60,4 +60,20 @@ describe('ProductInfo.vue', () => {
 
     expect(wrapper.text()).not.toContain('Medios de pago')
   })
+
+  it('maneja correctamente un producto sin precio', () => {
+    const wrapper = mount(ProductInfo, {
+      props: { productData: { ...mockProductData, price: null } }
+    })
+
+    expect(wrapper.text()).toContain('Precio no disponible')
+  })
+
+  it('maneja correctamente un producto sin condición', () => {
+    const wrapper = mount(ProductInfo, {
+      props: { productData: { ...mockProductData, condition: null } }
+    })
+
+    expect(wrapper.text()).toContain('Condición no especificada')
+  })
 })
