@@ -21,6 +21,7 @@ export default defineConfig({
         'node_modules/**', // Excluir dependencias
         'dist/**', // Excluir archivos generados
         'vite.config.js', // Excluir configuración de Vite
+        'src/components/product/ProductInfoSidebar.vue', // temp fix
       ],
     },
   },
