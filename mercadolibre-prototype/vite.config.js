@@ -20,6 +20,7 @@ export default defineConfig({
         '**/*.spec.js', // Excluir archivos de especificación
         'node_modules/**', // Excluir dependencias
         'dist/**', // Excluir archivos generados
+        'vite.config.js', // Excluir configuración de Vite
       ],
     },
   },

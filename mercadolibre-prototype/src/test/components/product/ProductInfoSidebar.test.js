@@ -28,14 +28,6 @@ describe('ProductInfo.vue', () => {
     expect(wrapper.text()).toContain(mockProductData.paymentMethods[0])
   })
 
-  it('muestra "Cargando información..." si no se proporciona productData', () => {
-    const wrapper = mount(ProductInfo, {
-      props: { productData: null }
-    })
-
-    expect(wrapper.text()).toContain('Cargando información...')
-  })
-
   it('muestra "Sin Stock" si el stock es 0', () => {
     const wrapper = mount(ProductInfo, {
       props: { productData: { ...mockProductData, stock: 0 } }
@@ -68,6 +60,7 @@ describe('ProductInfo.vue', () => {
 
     expect(wrapper.text()).toContain('Precio no disponible')
   })
+
 
   it('maneja correctamente un producto sin condición', () => {
     const wrapper = mount(ProductInfo, {

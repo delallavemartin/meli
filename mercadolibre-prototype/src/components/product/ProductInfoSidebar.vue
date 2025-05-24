@@ -38,7 +38,6 @@
       Precio no disponible
     </p>
     <p v-if="productData.price" class="text-ml-gray mb-1">
-      en
       <span class="text-green-600 font-semibold">
         12x $
         {{ (productData.price?.amount / 12)?.toLocaleString('es-AR', {
@@ -48,12 +47,6 @@
         }}
       </span>
     </p>
-    <a
-      href="#"
-      class="text-sm text-ml-blue hover:text-blue-700"
-    >
-      Ver los medios de pago
-    </a>
 
     <div class="mt-4 mb-4">
       <p
@@ -191,7 +184,6 @@
       </div>
     </div>
   </div>
-  <div v-else class="text-center text-ml-gray">Cargando información...</div>
 </template>
 
 <script setup>

@@ -3,7 +3,13 @@
     <div class="container mx-auto p-4">
       <div class="flex flex-col md:flex-row gap-6">
         <main class="w-full md:w-3/4 lg:w-4/5">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div v-if="error" class="text-red-500 text-center">
+            {{ error }}
+          </div>
+          <div v-else-if="products && products.length === 0" class="text-gray-500 text-center">
+            No hay productos disponibles.
+          </div>
+          <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             <ProductCard v-for="product in products" :key="product.id" :product="product" />
           </div>
         </main>
@@ -28,5 +34,4 @@ onMounted(async () => {
     error.value = err.message || 'Ocurrió un error desconocido al obtener los productos.'
   }
 })
-
 </script>

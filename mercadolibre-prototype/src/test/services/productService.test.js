@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import apiClient from '@/services/apiClient';
-import { fetchProduct, fetchProducts } from '@/services/apiClient';
+import apiClient from '@/services/apiClient.js';
+import { fetchProduct, fetchProducts } from '@/services/productService.js';
 
 vi.mock('@/services/apiClient', () => ({
   default: {
