@@ -13,7 +13,7 @@
 ### 1. Clonar el repositorio
 Clona el repositorio en tu máquina local:
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/delallavemartin/meli.git
 ```
 
 ### 2. Navegar al directorio del proyecto
@@ -82,7 +82,7 @@ npm run test:coverage
 ### 1. Clonar el repositorio
 Clona el repositorio en tu máquina local:
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/delallavemartin/meli.git
 ```
 
 ### 2. Navegar al directorio del proyecto
