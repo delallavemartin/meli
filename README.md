@@ -6,7 +6,7 @@ Este documento detalla las decisiones arquitectónicas y tecnológicas tomadas d
 ## Decisiones Arquitectónicas Generales
 El proyecto se construyó siguiendo una arquitectura Cliente/Servidor desacoplada, donde el Frontend (FE) y el Backend (BE) operan en servidores independientes. Si bien para esta entrega inicial ambos residen en el mismo repositorio para simplificar el proceso, en un entorno de producción se optarían por repositorios separados para un mejor control de versiones y despliegue.
 
-Para el Frontend, se eligió desarrollar una Single Page Application (SPA). Esta decisión se justifica por la necesidad inherente de una plataforma de e-commerce (similar a Mercado Libre) de ofrecer una experiencia de usuario fluida, navegación rápida y mínimas recargas de página.
+Para el Frontend, se eligió desarrollar una Single Page Application (SPA). Esta decisión se justifica por la necesidad inherente de una plataforma de e-commerce (como Mercado Libre) de ofrecer una experiencia de usuario fluida, navegación rápida y mínimas recargas de página.
 
 ## Proyecto Frontend
 
@@ -34,13 +34,12 @@ Vue Router es la solución recomendada y más eficiente para Vue. Permite gestio
 - **Herramienta**: Axios
 
 **Justificación**:
-Aunque se comenzó usando la API nativa Workspace, la necesidad de manejar errores de forma centralizada mediante interceptores llevó a la adopción de Axios. Esta librería facilita una gestión de peticiones HTTP robusta y estandarizada.
-
+Aunque se comenzó usando la API nativa fetch, la necesidad de manejar errores de forma centralizada mediante interceptors llevó a la adopción de Axios.
 ### 5. Estilos y UI
 - **Framework de Estilos**: TailwindCSS
 
 **Justificación**:
-Tailwind CSS se eligió por su filosofía "utility-first", que acelera la construcción de interfaces de usuario complejas, como las que se encuentran en un e-commerce. Proporciona todas las utilidades de estilo necesarias desde el inicio y se considera más simple y flexible que otras herramientas como Bootstrap para este contexto, además de ofrecer una excelente integración con Vue.
+Tailwind CSS se eligió por su filosofía "utility-first", que acelera la construcción de interfaces de usuario complejas, como las que se encuentran en un e-commerce. Proporciona todas las utilidades de estilo necesarias desde el inicio y la considero más simple y flexible que otras herramientas como Bootstrap para este contexto, además de ofrecer una excelente integración con Vue.
 
 ### 6. Testing
 - **Herramientas**: Vitest
@@ -63,25 +62,13 @@ La elección de Java 21 y Spring Boot se basa en años de experiencia con esta t
 - **Tipo de Arquitectura**: Monolito con Arquitectura en Capas (Resource, Service, Repository).
 
 **Justificación**:
-Actualmente, el proyecto se implementa como un monolito (un único JAR ejecutable). Sin embargo, en un contexto real de e-commerce (ej., Mercado Libre), esta solución se concebiría como un módulo de productos dentro de una arquitectura de microservicios, el cual sería dockerizado y orquestado con tecnologías como Kubernetes.
+Actualmente, el proyecto se implementa como un monolito (un único JAR ejecutable). Sin embargo, en un contexto real de e-commerce, esta solución se concebiría como un módulo de productos dentro de una arquitectura de microservicios, el cual sería dockerizado y orquestado con tecnologías como Kubernetes.
 
 El código se organiza en un patrón de arquitectura en capas (Resource, Service, Repository), una elección simple, probada y ampliamente adoptada en proyectos Spring. Es importante señalar que ProductDetailView se utiliza más como un DTO (Data Transfer Object) que como una vista, lo cual es adecuado dada la simplicidad de los datos (lectura de JSON). En caso de integrar una base de datos, el objeto de vista debería desacoplarse del modelo de dominio.
 
 ### 3. Estructura de Carpetas
-src/
-├── main/
-│   └── java/com/martindelallave/ml/
-│       ├── common/     # Manejo de excepciones (e.g., GlobalExceptionHandler, ErrorResponse)
-│       ├── config/     # Configuraciones específicas de Spring
-│       ├── file/       # Componente para la lectura de archivos (e.g., FileReaderService)
-│       ├── logging/    # Configuración centralizada de logging y utilidades
-│       ├── repository/ # Interfaces y clases de acceso a datos
-│       ├── resource/   # Controladores REST (APIs)
-│       └── views/      # DTOs/Objetos de respuesta para la API
-└── test/
-    └── java/com/martindelallave/ml/
-        ├── integration/ # Pruebas de integración
-        └── unit/        # Pruebas unitarias
+Organizada lógicamente por capa (common/, config/, file/, logging/, repository/, service/, resource/, views/ (DTOs)) dentro de src/main/java/com/martindelallave/ml/, con carpetas integration/ y unit/ para tests.
+Justificación: Facilita la navegación y el mantenimiento, siguiendo un patrón bien establecido en proyectos Spring.
 
 **Justificación**:
 Esta estructura organiza el código de manera lógica por capa, facilitando la navegación y el mantenimiento, un patrón bien establecido en proyectos Spring.
