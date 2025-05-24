@@ -1,2 +1,0 @@
-# meli
-MELI tech challenge
